@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import LoginContextProvider, { LoginContext } from './context';
+import { Nav } from './Nav';
+import { Login } from './Login';
+import Posts from './Posts';
+import { Post } from './Post';
 
-function App() {
+
+function App() {  
+  console.log('App rendered');
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LoginContextProvider>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <Nav />
+            <Routes>
+              <Route path='/' element={<Posts />}/>
+              <Route path='/:id' element={<Post />}/>
+              <Route path='/login' element={<Login />}/>
+            </Routes>
+          </header>
+        </div>
+      </BrowserRouter>
+    </LoginContextProvider>
   );
 }
 
