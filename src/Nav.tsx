@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { LoginContext } from "./context";
 
 export function Nav(): JSX.Element | null {
-  const { logged } = useContext(LoginContext);
+  const { logged, setLogin } = useContext(LoginContext);
 
   const nav = {
     alignSelf: "normal",
@@ -16,10 +16,7 @@ export function Nav(): JSX.Element | null {
     return (
     <ul style={nav}>
       <li>
-        <NavLink to={'/'} className="App-link">Posts</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/Login'} className="App-Link">Logout</NavLink>
+        <button onClick={() => {setLogin(false)}}>logout</button>
       </li>
     </ul>
     )
