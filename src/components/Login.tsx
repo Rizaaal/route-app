@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { LoginContext } from "../context";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Login(){
-  const { setLogin, logged } = useContext(LoginContext);
-  console.log('Login: ', logged);
+  const { setLogin } = useContext(LoginContext);
 
   return (
     <>

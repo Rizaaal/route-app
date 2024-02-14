@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-
 export function Post(){
   const { id } = useParams();
   const [post, getPostData] = useState<Post | null>(null);
