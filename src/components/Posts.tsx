@@ -23,7 +23,7 @@ function Posts(){
       <ul>
         {data.map((post: Post) => 
           <li key={post.id} style={postStyle}>
-            <NavLink to={`/${post.id}`} className="App-Link">{post.title}</NavLink> 
+            <NavLink to={`/post/${post.id}`} className="App-Link">{post.title}</NavLink> 
           </li>
         )}
       </ul>

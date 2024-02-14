@@ -24,7 +24,7 @@ function App() {
 
               <Route element={<ProtectedRoute logged={logged} />}>
                 <Route path='/' element={<Posts />}/>
-                <Route path='/:id' element={<Post />}/>
+                <Route path='/post/:id' element={<Post />}/>
               </Route>
 
               <Route element={<ProtectedRouteLogin logged={logged} />}>
