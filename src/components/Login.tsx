@@ -8,9 +8,11 @@ export function Login(){
   return (
     <>
       <h1>Login</h1>
-      <NavLink onClick={() => {setLogin(true)}} to={'/'}>
-        login
-      </NavLink>
+      <button>
+        <NavLink className='button-link' onClick={() => {setLogin(true)}} to={'/'}>
+          login
+        </NavLink>
+      </button>
     </>
   );
 }
