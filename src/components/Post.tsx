@@ -31,7 +31,7 @@ export function Post(){
         <h2>Comments</h2>
         <ul>
           {comments.map(comment => 
-            <li style={commentStyle}>
+            <li key={comment.id} style={commentStyle}>
               <p>{comment.name}</p>
               <p>{comment.email}</p>
               <p>{comment.body}</p>
