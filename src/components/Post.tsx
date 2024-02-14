@@ -12,7 +12,7 @@ export function Post(){
     .then(response => response.json())
     .then(json => getPostData(json));
 
-    fetch('https://jsonplaceholder.typicode.com/comments')
+    fetch('https://jsonplaceholder.typicode.com/posts/' +id +'/comments')
     .then(response => response.json())
     .then(json => getComments(json));
   }, []);
