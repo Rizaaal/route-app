@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LoginContext } from "./context";
+import { LoginContext } from "../context";
 import { NavLink, Navigate } from "react-router-dom";
 
 export function Login(){

@@ -1,6 +1,6 @@
 import { ReactElement, ReactHTML, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { LoginContext } from "./context";
+import { LoginContext } from "../context";
 
 export function Nav(): JSX.Element | null {
   const { logged, setLogin } = useContext(LoginContext);

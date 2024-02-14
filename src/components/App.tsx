@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import { LoginContext } from './context';
+import '../App.css';
+import { LoginContext } from '../context';
 import { Nav } from './Nav';
 import { Login } from './Login';
 import Posts from './Posts';
 import { Post } from './Post';
-import { ProtectedRoute } from './ProtectedRoute';
+import { ProtectedRoute } from '../routes/ProtectedRoute';
 import { useContext, useState } from 'react';
-import { ProtectedRouteLogin } from './ProtectedRouteLogin';
+import { ProtectedRouteLogin } from '../routes/ProtectedRouteLogin';
 
 
 function App() {  
