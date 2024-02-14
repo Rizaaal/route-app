@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import '../App.css';
 import { LoginContext } from '../context';
 import { Nav } from './Nav';
@@ -30,6 +30,13 @@ function App() {
               <Route element={<ProtectedRouteLogin logged={logged} />}>
                 <Route path='/login' element={<Login />}/>
               </Route>
+
+              <Route path='*' element={
+                <>
+                  <h1>404</h1>
+                  <NavLink to='/'>Ritorna alla home</NavLink>
+                </>
+              }></Route>
               
             </Routes>
           </header>
