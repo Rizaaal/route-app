@@ -11,7 +11,8 @@ export const LoginContext = createContext<Props>({
 });
 
 function LoginContextProvider({ children }: {children: JSX.Element}) {
-    const [logged, setLogin] = useState<boolean>(false);
+    const [logged, setLogin] = useState<boolean>(JSON.parse(localStorage.getItem("logged") || "false"));
+    localStorage.setItem("logged", logged + '');
 
     return (
         <LoginContext.Provider value={{ logged, setLogin }}>
