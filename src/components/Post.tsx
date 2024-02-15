@@ -17,23 +17,23 @@ export function Post() {
       getPostData(postDetailCache[id as string]);
     } else {
       fetch('https://jsonplaceholder.typicode.com/posts/' + id)
-      .then(response => response.json())
-      .then(json => {
+        .then(response => response.json())
+        .then(json => {
 
-        // save inside localstorage
-        const newPostDetailCache = {
-          ...postDetailCache,
-          [id as string]: {
-            userId: json.userId,
-            id: json.id,
-            title: json.title,
-            body: json.body
-          }
-        };
-        localStorage.setItem("loadedPosts", JSON.stringify(newPostDetailCache));
+          // save inside localstorage
+          const newPostDetailCache = {
+            ...postDetailCache,
+            [id as string]: {
+              userId: json.userId,
+              id: json.id,
+              title: json.title,
+              body: json.body
+            }
+          };
+          localStorage.setItem("loadedPosts", JSON.stringify(newPostDetailCache));
 
-        getPostData(json)
-      });
+          getPostData(json)
+        });
     }
   });
 
@@ -41,8 +41,8 @@ export function Post() {
     if (!!postCommentsCache[id as string]) {
       getComments(postCommentsCache[id as string]);
     } else {
-    fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
-      .then(response => response.json())
+      fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
+        .then(response => response.json())
         .then(json => {
           // save inside localstorage
           const newPostCommentsCache = {
@@ -65,23 +65,23 @@ export function Post() {
   return (
     <>
       {post ?
-        <>
-          <div className="Post" style={{margin: '1em'}}>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-          </div>
-          <ul className="Comments" style={{margin: '1em'}}>
-            <h2>Comments</h2>
+        <div className="Post" style={{ margin: '1em' }}>
+          <h1>{post.title}</h1>
+          <p>{post.body}</p>
+        </div> : <p>loading...</p>}
+
+      {comments ?
+        <div className="Comments" style={{ margin: '1em' }}>
+          <h2>Comments</h2>
+          <ul>
             {comments.map(comment =>
               <li key={comment.id} style={commentStyle}>
                 <p>{comment.name}</p>
                 <p>{comment.email}</p>
                 <p>{comment.body}</p>
-              </li>
-            )}
+              </li>)}
           </ul>
-        </>
-        : <p>loading...</p>}
+        </div> : <p>loading...</p>}
     </>
   );
 }
