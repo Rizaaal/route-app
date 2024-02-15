@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 export function Post() {
   const { id } = useParams();
@@ -56,32 +57,39 @@ export function Post() {
     }
   }, []);
 
-  const commentStyle = {
-    padding: '1em',
-    margin: '1em',
-    backgroundColor: '#333e55',
-  }
+  const Comment = styled.li`
+    padding: 1em;
+    margin: 1em;
+    background-color: #333e55;
+  `;
+
+  const DetailSection = styled.section`
+    margin: 1em;
+  `
+  
 
   return (
     <>
       {post ?
-        <div className="Post" style={{ margin: '1em' }}>
+        <DetailSection>
           <h1>{post.title}</h1>
           <p>{post.body}</p>
-        </div> : <p>loading...</p>}
+        </DetailSection> 
+      : <p>loading...</p>}
 
       {comments ?
-        <div className="Comments" style={{ margin: '1em' }}>
+        <DetailSection>
           <h2>Comments</h2>
           <ul>
             {comments.map(comment =>
-              <li key={comment.id} style={commentStyle}>
+              <Comment key={comment.id}>
                 <p>{comment.name}</p>
                 <p>{comment.email}</p>
                 <p>{comment.body}</p>
-              </li>)}
+              </Comment>)}
           </ul>
-        </div> : <p>loading...</p>}
+        </DetailSection> 
+      : <p>loading...</p>}
     </>
   );
 }
