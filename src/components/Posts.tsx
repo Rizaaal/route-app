@@ -2,12 +2,21 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Posts(){
-  const [data, setData] = useState<Array<Post>>([]);
+  const cache: string | null = localStorage.getItem("data");
   
   useEffect(() => {
+    
+    if (cache) {
+      setData(JSON.parse(cache));
+    } else {
     fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
-    .then(json => setData(json))
+      .then(json => {
+        localStorage.setItem("data", JSON.stringify(json));
+        setData(json);
+      });
+    }
+
   }, []);
 
   const postStyle = {
