@@ -35,7 +35,7 @@ export function Post() {
           getPostData(json)
         });
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (!!postCommentsCache[id as string]) {
