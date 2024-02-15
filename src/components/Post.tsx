@@ -3,14 +3,33 @@ import { useParams } from "react-router-dom";
 
 export function Post() {
   const { id } = useParams();
+  let postDetailCache: { [key: string]: Post } = JSON.parse(localStorage.getItem("loadedPosts") || "{}");
   const [post, getPostData] = useState<Post | null>(null);
-
   const [comments, getComments] = useState<IComment[]>([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts/' + id)
+    if (!!postDetailCache[id as string]) {
+      getPostData(postDetailCache[id as string]);
+    } else {
+      fetch('https://jsonplaceholder.typicode.com/posts/' + id)
       .then(response => response.json())
-      .then(json => getPostData(json));
+      .then(json => {
+
+        // save inside localstorage
+        const newPostDetailCache = {
+          ...postDetailCache,
+          [id as string]: {
+            userId: json.userId,
+            id: json.id,
+            title: json.title,
+            body: json.body
+          }
+        };
+        localStorage.setItem("loadedPosts", JSON.stringify(newPostDetailCache));
+
+        getPostData(json)
+      });
+    }
 
     fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
       .then(response => response.json())
