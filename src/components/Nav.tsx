@@ -4,16 +4,9 @@ import { LoginContext } from "../context";
 export function Nav(): JSX.Element | null {
   const { logged, setLogin } = useContext(LoginContext);
 
-  const nav = {
-    alignSelf: "normal",
-    display: "flex",
-    justifyContent: "space-around",
-    listStyle: "none"
-  }
-
   if (logged) {
     return (
-    <ul style={nav}>
+    <ul>
       <li>
         <button onClick={() => {setLogin(false)}}>logout</button>
       </li>
