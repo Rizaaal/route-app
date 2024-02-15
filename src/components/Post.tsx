@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import preload from './../preload.gif'
 
 function Post() {
   const { id } = useParams();
@@ -75,7 +76,7 @@ function Post() {
           <h1>{post.title}</h1>
           <p>{post.body}</p>
         </DetailSection> 
-      : <p>loading...</p>}
+      : <img src={preload} alt="Loading..."/>}
 
       {comments ?
         <DetailSection>
@@ -89,7 +90,7 @@ function Post() {
               </Comment>)}
           </ul>
         </DetailSection> 
-      : <p>loading...</p>}
+      : <img src={preload} alt="Loading..."/>}
     </>
   );
 }

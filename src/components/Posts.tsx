@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import preload from "./../preload.gif"
 
 function Posts(){
   const cache: string | null = sessionStorage.getItem("data");
@@ -40,7 +41,7 @@ function Posts(){
               {post.title}
             </NavLink> 
           </Post>
-        ) : <p>Loading...</p>}
+        ) : <img src={preload} alt="Loading..."/>}
       </ul>
     </>
   )
