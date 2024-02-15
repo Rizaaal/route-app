@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Posts(){
-  const cache: string | null = localStorage.getItem("data");
+  const cache: string | null = sessionStorage.getItem("data");
   const [data, setData] = useState<Array<Post> | null>(null);
   
   useEffect(() => {
@@ -13,7 +13,7 @@ function Posts(){
       fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(json => {
-        localStorage.setItem("data", JSON.stringify(json));
+        sessionStorage.setItem("data", JSON.stringify(json));
         setData(json);
       });
     }
