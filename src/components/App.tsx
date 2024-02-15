@@ -13,7 +13,6 @@ import { ProtectedRouteLogin } from '../routes/ProtectedRouteLogin';
 function App() {  
   console.log('App rendered');
   const { logged } = useContext(LoginContext);
-  console.log('logged: ', logged);
   
   return (
       <BrowserRouter>
