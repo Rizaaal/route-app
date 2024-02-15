@@ -6,8 +6,11 @@ export function Post() {
   let postDetailCache: IMap<Post> = JSON.parse(
     localStorage.getItem("loadedPosts") || "{}"
   );
+  let postCommentsCache: IMap<IComment[]> = JSON.parse(
+    localStorage.getItem("loadedComments") || "{}"
+  );
   const [post, getPostData] = useState<Post | null>(null);
-  const [comments, getComments] = useState<IComment[]>([]);
+  const [comments, getComments] = useState<IComment[] | null>(null);
 
   useEffect(() => {
     if (!!postDetailCache[id as string]) {
@@ -32,10 +35,25 @@ export function Post() {
         getPostData(json)
       });
     }
+  });
 
+  useEffect(() => {
+    if (!!postCommentsCache[id as string]) {
+      getComments(postCommentsCache[id as string]);
+    } else {
     fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
       .then(response => response.json())
-      .then(json => getComments(json));
+        .then(json => {
+          // save inside localstorage
+          const newPostCommentsCache = {
+            ...postCommentsCache,
+            [id as string]: [...json]
+          };
+          localStorage.setItem("loadedComments", JSON.stringify(newPostCommentsCache));
+          
+          getComments(json);
+        });
+    }
   }, []);
 
   const commentStyle = {
