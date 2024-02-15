@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 
 export function Post() {
   const { id } = useParams();
-  let postDetailCache: { [key: string]: Post } = JSON.parse(localStorage.getItem("loadedPosts") || "{}");
+  let postDetailCache: IMap<Post> = JSON.parse(
+    localStorage.getItem("loadedPosts") || "{}"
+  );
   const [post, getPostData] = useState<Post | null>(null);
   const [comments, getComments] = useState<IComment[]>([]);
 
