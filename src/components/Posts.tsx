@@ -3,14 +3,15 @@ import { NavLink } from "react-router-dom";
 
 function Posts(){
   const cache: string | null = localStorage.getItem("data");
+  const [data, setData] = useState<Array<Post> | null>(null);
   
   useEffect(() => {
     
     if (cache) {
       setData(JSON.parse(cache));
     } else {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
+      fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
       .then(json => {
         localStorage.setItem("data", JSON.stringify(json));
         setData(json);
@@ -30,11 +31,11 @@ function Posts(){
     <>
       <h1>Posts</h1>
       <ul>
-        {data.map((post: Post) => 
+        {data ? data.map((post: Post) => 
           <li key={post.id} style={postStyle}>
             <NavLink to={`/post/${post.id}`} className="App-link">{post.title}</NavLink> 
           </li>
-        )}
+        ) : <p>Loading...</p>}
       </ul>
     </>
   )
