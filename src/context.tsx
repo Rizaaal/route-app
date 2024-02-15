@@ -1,24 +1,26 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 interface Props {
-    logged: boolean;
-    setLogin: Dispatch<SetStateAction<boolean>>
+  logged: boolean;
+  setLogin: Dispatch<SetStateAction<boolean>>
 }
 
 export const LoginContext = createContext<Props>({
-    logged: false,
-    setLogin: () => {}
+  logged: false,
+  setLogin: () => { }
 });
 
-function LoginContextProvider({ children }: {children: JSX.Element}) {
-    const [logged, setLogin] = useState<boolean>(JSON.parse(localStorage.getItem("logged") || "false"));
-    localStorage.setItem("logged", logged + '');
+function LoginContextProvider({ children }: { children: JSX.Element }) {
+  const [logged, setLogin] = useState<boolean>(
+    JSON.parse(sessionStorage.getItem("logged") || "false")
+  );
+  sessionStorage.setItem("logged", logged + '');
 
-    return (
-        <LoginContext.Provider value={{ logged, setLogin }}>
-            {children}
-        </LoginContext.Provider>
-    )
+  return (
+    <LoginContext.Provider value={{ logged, setLogin }}>
+      {children}
+    </LoginContext.Provider>
+  )
 }
 
 export default LoginContextProvider
