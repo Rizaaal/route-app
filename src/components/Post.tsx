@@ -7,7 +7,7 @@ export function Post() {
     sessionStorage.getItem("loadedPosts") || "{}"
   );
   let postCommentsCache: IMap<IComment[]> = JSON.parse(
-    localStorage.getItem("loadedComments") || "{}"
+    sessionStorage.getItem("loadedComments") || "{}"
   );
   const [post, getPostData] = useState<Post | null>(null);
   const [comments, getComments] = useState<IComment[] | null>(null);
@@ -44,12 +44,12 @@ export function Post() {
       fetch('https://jsonplaceholder.typicode.com/posts/' + id + '/comments')
         .then(response => response.json())
         .then(json => {
-          // save inside localstorage
+          // save inside sessionStorage
           const newPostCommentsCache = {
             ...postCommentsCache,
             [id as string]: [...json]
           };
-          localStorage.setItem("loadedComments", JSON.stringify(newPostCommentsCache));
+          sessionStorage.setItem("loadedComments", JSON.stringify(newPostCommentsCache));
           
           getComments(json);
         });
