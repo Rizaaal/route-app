@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 export function Post() {
   const { id } = useParams();
   let postDetailCache: IMap<Post> = JSON.parse(
-    localStorage.getItem("loadedPosts") || "{}"
+    sessionStorage.getItem("loadedPosts") || "{}"
   );
   let postCommentsCache: IMap<IComment[]> = JSON.parse(
     localStorage.getItem("loadedComments") || "{}"
@@ -20,7 +20,7 @@ export function Post() {
         .then(response => response.json())
         .then(json => {
 
-          // save inside localstorage
+          // save inside sessionStorage
           const newPostDetailCache = {
             ...postDetailCache,
             [id as string]: {
@@ -30,7 +30,7 @@ export function Post() {
               body: json.body
             }
           };
-          localStorage.setItem("loadedPosts", JSON.stringify(newPostDetailCache));
+          sessionStorage.setItem("loadedPosts", JSON.stringify(newPostDetailCache));
 
           getPostData(json)
         });
