@@ -21,20 +21,21 @@ function Posts(){
 
   }, []);
 
-  const Post = styled.li`
-    background-color: rgb(69, 77, 91);
+  const Post = styled.li<{ visited: boolean | undefined }>`
+    background-color: ${props => props.visited ? '#737373' : 'rgb(69, 77, 91)'};
     padding: 1em;
     margin: .5em;
     border-radius: 4px;
   `
   
+  const loadedPosts = JSON.parse(sessionStorage.getItem("loadedPosts") || "{}");
 
   return (
     <>
       <h1>Posts</h1>
       <ul>
         {data ? data.map((post: Post) => 
-          <Post key={post.id}>
+          <Post key={post.id} visited={loadedPosts[post.id]}>
             <NavLink to={`/post/${post.id}`} className="App-link">
               {post.title}
             </NavLink> 
