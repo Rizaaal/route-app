@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LoginContext } from "../context";
 import { NavLink } from "react-router-dom";
 
-export function Login(){
+function Login(){
   const { setLogin } = useContext(LoginContext);
 
   return (
@@ -16,3 +16,5 @@ export function Login(){
     </>
   );
 }
+
+export default Login

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export function Post() {
+function Post() {
   const { id } = useParams();
   let postDetailCache: IMap<Post> = JSON.parse(
     sessionStorage.getItem("loadedPosts") || "{}"
@@ -93,3 +93,5 @@ export function Post() {
     </>
   );
 }
+
+export default Post

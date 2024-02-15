@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LoginContext } from "../context";
 
-export function Nav(): JSX.Element | null {
+function Nav(): JSX.Element | null {
   const { logged, setLogin } = useContext(LoginContext);
 
   if (logged) {
@@ -16,3 +16,5 @@ export function Nav(): JSX.Element | null {
     return null
   }
 }
+
+export default Nav;

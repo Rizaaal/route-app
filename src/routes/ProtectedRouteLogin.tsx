@@ -1,7 +1,8 @@
-import { Navigate, Outlet, Route } from "react-router-dom";
-import { Login } from "../components/Login";
+import { Navigate, Outlet } from "react-router-dom";
 
-export function ProtectedRouteLogin({logged}: {logged: boolean}): JSX.Element {  
+function ProtectedRouteLogin({logged}: {logged: boolean}): JSX.Element {  
   if (logged) return <Navigate to='/' />;
   return <Outlet />;
-}
+};
+
+export default ProtectedRouteLogin;
