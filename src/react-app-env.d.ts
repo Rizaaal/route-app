@@ -14,3 +14,7 @@ interface IComment {
     email: string;
     body: string;
 }
+
+interface IMap<T> {
+    [key: string]: T
+}
